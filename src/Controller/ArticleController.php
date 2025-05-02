@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Article;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -9,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ArticleController extends AbstractController{
 
     #[Route('/create-article', name: 'article')]
-    public function displayCreateArticle(Request $request){
+    public function displayCreateArticle(Request $request, EntityManagerInterface $entityManager){
 
         if ($request->isMethod('POST')) {
 
@@ -18,11 +20,9 @@ class ArticleController extends AbstractController{
             $content = $request->request->get('content');
             $image = $request->get('image');
 
-            dump($title);
-            dump($description);
-            dump($content);
-            dump($image);
-            ;die;
+           $article= new Article($title, $content, $description, $image);
+           $entityManager->persist($article);
+           $entityManager->flush();
 
         }
            

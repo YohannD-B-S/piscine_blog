@@ -32,6 +32,18 @@ class Article
     #[ORM\Column]
     private ?bool $isPublished = null;
 
+    public function __construct($title, $content, $description, $image)
+    {
+        $this->title = $title;
+        $this->content = $content;
+        $this->description = $description;
+        $this->image = $image;
+    
+    
+        $this->createdAt = new \DateTime();
+        $this->isPublished = true;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

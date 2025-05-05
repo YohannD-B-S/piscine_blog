@@ -6,7 +6,7 @@
 
     <section class="articles-container">
         {% for article in articles %}
-            <article class="article-preview">
+        <a href="{{ path('detail-article', {'id' : article.id}) }}"><article class="article-preview">
                 <h2 class="article-title">{{ article.title }}</h2>
                 <p class="article-description">{{ article.description }}</p>
                 <div><img src="{{ article.image }}" alt="Image de l'article" class="article-image"></div>

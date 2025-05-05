@@ -20,9 +20,20 @@ class ArticleController extends AbstractController{
             $content = $request->request->get('content');
             $image = $request->get('image');
 
+            // creer un article
+            // creer la table 
+            // se connnecter a la base de donnee grace a PDO
+            // recuperer les champs du formulaire
+            // inserer les champs dans la table article
+            // permet de remplacer INSERRT INTO article (title, description, content, image) VALUES ($title, $description, $content, $image)
+            // $sql = "INSERT INTO article (title, description, content, image) VALUES (:title, :description, :content, :image)";
+
            $article= new Article($title, $content, $description, $image);
-           $entityManager->persist($article);
-           $entityManager->flush();
+
+           // récupere les données de l'instance de classe Article (entité Article)
+           // et les insert dans la table article  de la base de donnée
+           $entityManager->persist($article); 
+           $entityManager->flush(); 
 
         }
            

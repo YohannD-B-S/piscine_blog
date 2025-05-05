@@ -1,31 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>{% block metatitle %}{% endblock metatitle %} </title>
-	<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" type="text/css" />
-
+    <title>{% block metatitle %}{% endblock metatitle %}</title>
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" type="text/css" />
 </head>
 <body>
 
-	<header class="header">
+    <header class="header">
+        <img class="logo-header" src="{{ asset('assets/img/logo.webp') }}" alt="logo cocktail" />
 
-		<img class="logo-header" src="{{ asset('assets/img/logo.webp') }}" alt="logo cocktail" />
+        <nav class="nav-header">
+            <ul class="nav-menu">
+                <li><a href="{{ path('home') }}">Home</a></li>
+                <li><a href="{{ path('article') }}">Créer un article</a></li>
+                <li><a href="{{ path('list-articles') }}">Liste des articles</a></li>
+            </ul>
+        </nav>
+    </header>
 
-		<nav class="nav-header">
+    <main class="main">
 
-			<ul class="nav-menu">
-        <li><a href="{{ path('home') }}">Home</a></li>
-        <li><a href="{{ path('article') }}">Créer un article</a></li>
-        <li><a href="{{ path('list-articles') }}">Liste des articles</a></li>
-			</ul>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
 
-		</nav>
+        {% block main %}
+        {% endblock main %}
+        
+    </main>
 
-	</header>
+    <script>
+        // Fonction pour confirmer la suppression d'un article en javascript
+        function confirmDeletion(articleId) {
+            let confirmation = confirm("Voulez-vous vraiment supprimer cet article ?");
+            if (confirmation) {
+                window.location.href = `/delete-article/${articleId}`;
+            }
+        }
+    </script>
 
-    
-
-
-{% block main %}
-{% endblock main %}
-
+</body>
+</html>

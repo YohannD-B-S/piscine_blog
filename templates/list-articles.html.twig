@@ -11,6 +11,8 @@
                 <p class="article-description">{{ article.description }}</p>
                 <div><img src="{{ article.image }}" alt="Image de l'article" class="article-image"></div>
                 <p class="article-content">{{ article.content }}</p>
+            <a href="{{ path('delete-article', {'id' : article.id}) }}"><button class="delete-article-btn" onclick="confirmDeletion('{{ article.id }}')">Supprimer l'article</button></a>
+            <!--j'ajoute la fonction onclick pour confirmer la supression via javascript-->
             </article>
         {% endfor %}
     </section>

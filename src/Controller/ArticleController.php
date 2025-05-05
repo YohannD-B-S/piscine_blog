@@ -84,9 +84,18 @@ class ArticleController extends AbstractController{
     // on utilise Route pour creer un url pour afficher le detail d'un article
     // on va lui passer en parametre l'id de l'article que l'on veut afficher
     #[Route('/detail-article/{id}', name: 'detail-article')]
-    public function displayDetailArticle($id){
+    public function displayDetailArticle($id, ArticleRepository $articleRepository){
 
-        dd($id);
+        // je vais recuperer l'article avec l'id que j'ai passé en parametre
+        // je vais utiliser la méthode find() du repository pour recuperer l'article
+        // find() va me permettre de recuperer un article de la base de données avec son id
+        $article = $articleRepository->find($id);
+
+        return $this->render('detail-article.html.twig',[
+            'article' => $article
+        ]);
+
+        
 
     }
 

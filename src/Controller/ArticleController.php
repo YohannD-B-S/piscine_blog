@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -51,6 +52,31 @@ class ArticleController extends AbstractController{
            
 
         return $this->render('create-article.html.twig', );
+
+    }
+
+    // on va afficher la liste des articles
+    // on va créer une méthode pour afficher la liste des articles
+    // on utilise Route pour creer un url pour afficher la liste des articles 
+    #[Route('/list-articles', name: 'list-articles')]
+
+    // je creer ma methode displayListArticles qui va afficher la liste des articles
+    // je lui passe en parametre le repository de l'article qui va me permettre de recuperer les articles
+    // le repository est une classe qui se creer automatiquement lorsque l'on cree une entité
+    // il va me permettre de recuperer les articles de la base de données
+    public function displayListArticles(ArticleRepository $articleRepository){
+
+        $article = $articleRepository->findAll();
+        // findAll() va me permettre de recuperer tous les articles de la base de données
+        // je vais les stocker dans une variable $article
+
+
+        return $this->render('list-articles.html.twig',[
+            'articles' => $article
+        // je vais passer la variable $article à la vue list-articles.html.twig
+        // pour afficher la liste des articles
+        ]);
+
 
     }
 }

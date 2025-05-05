@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+
+<main>
+
+	<h1>Liste des articles</h1>
+
+
+        {% for article in articles %} 
+            <article>
+                <h2>{{ article.title }}</h2>
+                <p>{{ article.description }}</p>
+                <img src="{{ article.image }}" alt="Image de l'article">
+                <p>{{ article.content }}</p>
+            </article>
+        {% endfor %}
+
+</main>
+	
+</body>
+</html>

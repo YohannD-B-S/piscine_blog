@@ -11,7 +11,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class ArticleController extends AbstractController{
 
     #[Route('/create-article', name: 'article')]
+
+
+
     public function displayCreateArticle(Request $request, EntityManagerInterface $entityManager){
+        // on va créer un article
+        // on va créer un formulaire pour créer un article
+        // on va créer un article avec les données du formulaire
+        // on va créer un article avec les données du formulaire et l'enregistrer dans la base de données
 
         if ($request->isMethod('POST')) {
 
@@ -30,10 +37,15 @@ class ArticleController extends AbstractController{
 
            $article= new Article($title, $content, $description, $image);
 
-           // récupere les données de l'instance de classe Article (entité Article)
-           // et les insert dans la table article  de la base de donnée
-           $entityManager->persist($article); 
-           $entityManager->flush(); 
+            // récupère les données (les valeurs des propriétés) de la l'instance de classe Article (entité Article)
+			// et les insère dans la table Article
+			// Symfony peut faire ça directement, car on a utilisé le mapping
+			// sur chaque propriété de la classe Article pour les faire correspondre à des 
+			// colonnes dans la table article
+           $entityManager->persist($article); // scan les propriétés de l'entité Article et les insère dans la table article
+           $entityManager->flush(); // envoie la requête à la base de données pour l'exécuter
+
+           
 
         }
            

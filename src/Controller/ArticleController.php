@@ -91,8 +91,15 @@ class ArticleController extends AbstractController{
         // find() va me permettre de recuperer un article de la base de données avec son id
         $article = $articleRepository->find($id);
 
+
+
+        if (!$article){
+            return $this->redirectToRoute('404');
+            // si l'article n'existe pas, je vais rediriger vers la page 404
+        }
+
         return $this->render('detail-article.html.twig',[
-            'article' => $article
+            'article' => $article // je passe la variable $article à la vue detail-article.html.twig
         ]);
 
         

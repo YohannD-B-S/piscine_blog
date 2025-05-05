@@ -1,20 +1,19 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-<main>
+<main id="articles-list">
+    <h1 class="page-title">Liste des articles</h1>
 
-	<h1>Liste des articles</h1>
-
-
-        {% for article in articles %} 
-            <article>
-                <h2>{{ article.title }}</h2>
-                <p>{{ article.description }}</p>
-                <img src="{{ article.image }}" alt="Image de l'article">
-                <p>{{ article.content }}</p>
+    <section class="articles-container">
+        {% for article in articles %}
+            <article class="article-preview">
+                <h2 class="article-title">{{ article.title }}</h2>
+                <p class="article-description">{{ article.description }}</p>
+                <div><img src="{{ article.image }}" alt="Image de l'article" class="article-image"></div>
+                <p class="article-content">{{ article.content }}</p>
             </article>
         {% endfor %}
-
+    </section>
 </main>
-	
-{% endblock main %}
+ {% endblock main%}
+   

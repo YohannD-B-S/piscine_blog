@@ -1,15 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-<main>
- <article>
-	<h1>{{ article.title }}</h1>
-    <p>{{ article.description }}</p>
-    <img src="{{ article.image }}" alt="Image de l'article">
-    <p>{{ article.content }}</p>
-</article>
-   
-
+<main id="article-detail">
+    <article class="article-container">
+        <h1 class="article-title">{{ article.title }}</h1>
+        <p class="article-description">{{ article.description }}</p>
+        <div><img src="{{ article.image }}" alt="Image de l'article" class="article-image"></div>
+        <p class="article-content">{{ article.content }}</p>
+    </article>
 </main>
-	
 {% endblock main %}

@@ -79,4 +79,16 @@ class ArticleController extends AbstractController{
 
 
     }
+    // on va afficher le detail d'un article
+    // on va créer une méthode pour afficher le detail d'un article
+    // on utilise Route pour creer un url pour afficher le detail d'un article
+    // on va lui passer en parametre l'id de l'article que l'on veut afficher
+    #[Route('/detail-article/{id}', name: 'detail-article')]
+    public function displayDetailArticle($id){
+
+        dd($id);
+
+    }
+
+    
 }

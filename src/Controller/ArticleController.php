@@ -118,4 +118,14 @@ class ArticleController extends AbstractController{
         return $this->redirectToRoute('list-articles'); // je vais rediriger vers la liste des articles
 
     }
+
+    #[Route('/update-article/{id}', name: 'update-article')]
+
+    public function displayUpdateArticle($id, ArticleRepository $articleRepository){
+        $article = $articleRepository->find($id);
+
+        return $this->render('update-article.html.twig',[
+            'article' => $article // je passe la variable $article à la vue update-article.html.twig
+        ]);
+    }
 }

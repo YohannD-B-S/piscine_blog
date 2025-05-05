@@ -35,9 +35,10 @@
         // Fonction pour confirmer la suppression d'un article en javascript
         function confirmDeletion(articleId) {
             let confirmation = confirm("Voulez-vous vraiment supprimer cet article ?");
-            if (confirmation) {
+            if (confirmation === true) {
                 window.location.href = `/delete-article/${articleId}`;
-            }
+            }else{
+                window.location.href = `/list-article/${articleId}`;     
         }
     </script>
 

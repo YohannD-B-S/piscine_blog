@@ -93,8 +93,6 @@ public function displayCategory(CategoryRepository $categoryRepository){
         //je verifie si le formulaire à bien ete envoyé
         if($categoryForm->isSubmitted()){
 
-            $category->setCreatedAt(new \DateTime());
-
             //persist va scanner les propriétés de l'entité category
             //flush va envoyer la reequete a la base de donnée pour la mettre à jour.
             $entityManager->persist($category);

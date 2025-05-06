@@ -11,9 +11,8 @@
                 <p class="article-description">{{ article.description }}</p>
                 <div><img src="{{ article.image }}" alt="Image de l'article" class="article-image"></div>
                 <p class="article-content">{{ article.content }}</p>
-            <a href="{{ path('delete-article', {'id' : article.id}) }}"><button class="delete-article-btn" onclick="confirmDeletion('{{ article.id }}')">Supprimer l'article</button></a>
-            <!--j'ajoute la fonction onclick pour confirmer la supression via javascript-->
-        <a href="{{ path('update-article', {'id' : article.id}) }}"><button class="update-article-btn">Modifier l'article</button></a>
+                <a href="{{ path('delete-article', {'id' : article.id}) }}" onclick="confirmDeletion(event, '{{ article.id }}'); return false;" class="delete-article-btn">Supprimer l'article</a><!--j'ajoute la fonction onclick pour confirmer la supression via javascript-->
+                <a href="{{ path('update-article', {'id' : article.id}) }}"><button class="update-article-btn">Modifier l'article</button></a>
             </article></a>
         {% endfor %}
     </section>

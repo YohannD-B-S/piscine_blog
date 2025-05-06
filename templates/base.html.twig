@@ -32,15 +32,21 @@
     </main>
 
     <script>
-        // Fonction pour confirmer la suppression d'un article en javascript
-        function confirmDeletion(articleId) {
+        function confirmDeletion(event, articleId) {
+            // Empêche la navigation automatique
+            event.preventDefault();
+    
+            // Affiche une boîte de confirmation
             let confirmation = confirm("Voulez-vous vraiment supprimer cet article ?");
-            if (confirmation === true) {
+    
+            // Vérifie la réponse de l'utilisateur
+            if (confirmation) {
                 window.location.href = `/delete-article/${articleId}`;
-            }else{
-                window.location.href = `/list-article/${articleId}`;     
+            } else {
+                alert("Suppression annulée. L'article reste disponible !");
+            }
         }
     </script>
-
+    
 </body>
 </html>

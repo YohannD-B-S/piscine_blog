@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
+use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,7 +17,7 @@ class ArticleController extends AbstractController
 
 
 
-    public function displayCreateArticle(Request $request, EntityManagerInterface $entityManager)
+    public function displayCreateArticle(Request $request, EntityManagerInterface $entityManager, CategoryRepository $categoryRepository)
     {
         // on va créer un article
         // on va créer un formulaire pour créer un article
@@ -38,7 +39,7 @@ class ArticleController extends AbstractController
             // permet de remplacer INSERRT INTO article (title, description, content, image) VALUES ($title, $description, $content, $image)
             // $sql = "INSERT INTO article (title, description, content, image) VALUES (:title, :description, :content, :image)";
 
-            $article = new Article($title, $content, $description, $image);
+            $article = new Article($title, $content, $description, $image,);
 
             // récupère les données (les valeurs des propriétés) de la l'instance de classe Article (entité Article)
             // et les insère dans la table Article
@@ -48,12 +49,17 @@ class ArticleController extends AbstractController
             $entityManager->persist($article); // scan les propriétés de l'entité Article et les insère dans la table article
             $entityManager->flush(); // envoie la requête à la base de données pour l'exécuter
 
-
+            $categories = $categoryRepository->findAll(); 
 
         }
 
 
-        return $this->render('create-article.html.twig',);
+        return $this->render('create-article.html.twig',
+            [
+                'categories' => $categories,
+               
+            ]);
+
     }
 
     // on va afficher la liste des articles

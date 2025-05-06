@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+<main id="article-detail">
+    <article class="article-container">
+        <h1 class="article-title">{{ category.title }}</h1>
+        <h3 class="article-title">Numeros d'identification BDD :</h3>
+        <p class="article-description">{{ category.id }}</p>
+        <h3 class="article-title">Description :</h3>
+        <p class="article-description">{{ category.description }}</p>
+        <h3 class="article-title">Couleur :</h3>
+        <p class="article-description">{{ category.color }}</p>
+    </article>
+</main>
+{% endblock main %}

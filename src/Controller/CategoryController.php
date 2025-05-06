@@ -62,6 +62,8 @@ public function displayCategory(CategoryRepository $categoryRepository){
         //je verifie si le formulaire à bien ete envoyé
         if($categoryForm->isSubmitted()){
 
+            $category->setCreatedAt(new \DateTime());
+
             //persist va scanner les propriétés de l'entité category
             //flush va envoyer la reequete a la base de donnée pour la mettre à jour.
             $entityManager->persist($category);
@@ -72,8 +74,37 @@ public function displayCategory(CategoryRepository $categoryRepository){
         return $this->render('create-category.html.twig', [
 			'categoryForm' => $categoryForm->createView()
 		]);
+    }
+
+    #[Route('/update-category/{id}', name: 'update-category')]
+    public function displayUpdateCategory($id, CategoryRepository $categoryRepository, Request $request, EntityManagerInterface $entityManager){
+
+        $category=$categoryRepository->find($id);
+                // je creer un formulaire pour creer une category via la methode createForm
+        // je passe en parametre la classe CategoryForm et l'instance de la classe Category
+        $categoryForm =$this->createForm(CategoryForm::class,$category);
 
 
+        //handleRequest va récuperer les données du formulaire
+        //puis il va les assigner à l'instance de la classe Category
+        $categoryForm->handleRequest($request);
+
+
+        //je verifie si le formulaire à bien ete envoyé
+        if($categoryForm->isSubmitted()){
+
+            $category->setCreatedAt(new \DateTime());
+
+            //persist va scanner les propriétés de l'entité category
+            //flush va envoyer la reequete a la base de donnée pour la mettre à jour.
+            $entityManager->persist($category);
+            $entityManager->flush();
+            
+        }
+        //je redirige vers la page de creation de category
+        return $this->render('update-category.html.twig', [
+			'categoryForm' => $categoryForm->createView()
+		]);
 
 
     }

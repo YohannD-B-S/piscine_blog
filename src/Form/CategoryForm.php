@@ -19,7 +19,6 @@ class CategoryForm extends AbstractType
             ->add('title')
             ->add('description')
             ->add('color')
-            ->add('createdAt')
             ->add('submit', SubmitType::class,)
         ;
     }

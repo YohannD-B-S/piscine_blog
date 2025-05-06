@@ -10,6 +10,7 @@
         <p class="article-description">{{ category.description }}</p>
         <h3 class="article-title">Couleur :</h3>
         <p class="article-description">{{ category.color }}</p>
+        <a href="{{ path('update-category', {'id' : category.id}) }}"><button class="update-article-btn">Modifier l'article</button>
     </article>
 </main>
 {% endblock main %}

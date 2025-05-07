@@ -36,12 +36,13 @@ class Article
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $Category = null;
 
-    public function __construct($title, $content, $description, $image)
+    public function __construct($title, $content, $description, $image, $category)
     {
         $this->title = $title;
         $this->content = $content;
         $this->description = $description;
         $this->image = $image;
+        $this->Category = $category;
     
     
         $this->createdAt = new \DateTime();

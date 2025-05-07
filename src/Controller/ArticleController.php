@@ -30,6 +30,7 @@ class ArticleController extends AbstractController
             $description = $request->request->get('description');
             $content = $request->request->get('content');
             $image = $request->get('image');
+            $categoryId=$request->request->get('category');
 
             // creer un article
             // creer la table 
@@ -39,7 +40,10 @@ class ArticleController extends AbstractController
             // permet de remplacer INSERRT INTO article (title, description, content, image) VALUES ($title, $description, $content, $image)
             // $sql = "INSERT INTO article (title, description, content, image) VALUES (:title, :description, :content, :image)";
 
-            $article = new Article($title, $content, $description, $image,);
+            $category = $categoryRepository->find($categoryId);
+
+            $article = new Article($title, $content, $description, $image, $category);
+
 
             // récupère les données (les valeurs des propriétés) de la l'instance de classe Article (entité Article)
             // et les insère dans la table Article
@@ -49,10 +53,10 @@ class ArticleController extends AbstractController
             $entityManager->persist($article); // scan les propriétés de l'entité Article et les insère dans la table article
             $entityManager->flush(); // envoie la requête à la base de données pour l'exécuter
 
-            $categories = $categoryRepository->findAll(); 
+             
 
         }
-
+        $categories = $categoryRepository->findAll();
 
         return $this->render('create-article.html.twig',
             [

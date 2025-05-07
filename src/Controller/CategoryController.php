@@ -94,7 +94,7 @@ public function displayCategory(CategoryRepository $categoryRepository){
         if($categoryForm->isSubmitted()){
 
             //persist va scanner les propriétés de l'entité category
-            //flush va envoyer la reequete a la base de donnée pour la mettre à jour.
+            //flush va envoyer la requete a la base de donnée pour la mettre à jour.
             $entityManager->persist($category);
             $entityManager->flush();
             
